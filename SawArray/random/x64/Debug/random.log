@@ -1,0 +1,3 @@
+﻿  random.cpp
+E:\Solutions\SawArray\random\random.cpp(16,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  random.vcxproj -> E:\Solutions\SawArray\x64\Debug\random.exe

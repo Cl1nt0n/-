@@ -1,0 +1,3 @@
+﻿  SawArray.cpp
+E:\Solutions\SawArray\SawArray\SawArray.cpp(21,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  SawArray.vcxproj -> E:\Solutions\SawArray\x64\Debug\SawArray.exe
