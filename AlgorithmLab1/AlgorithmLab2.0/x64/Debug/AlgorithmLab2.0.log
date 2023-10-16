@@ -1,0 +1,14 @@
+﻿  AlgorithmLab2.0.cpp
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(17,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(26,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(36,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(46,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(62,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(73,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(92,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(103,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(115,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(127,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(145,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+E:\Solutions\AlgorithmLab1\AlgorithmLab2.0\AlgorithmLab2.0.cpp(158,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  AlgorithmLab2.0.vcxproj -> E:\Solutions\AlgorithmLab1\x64\Debug\AlgorithmLab2.0.exe

@@ -63,7 +63,7 @@ void sin_sorted_int(int* arr, int n, int divider, int interval)
 	double A = divider / 2;
 	double corner = rand() % divider;
 	for (int i = 0; i < n; ++i) {
-		arr[i] = (int)(divider / 2 * sin(corner * i * PI / interval));
+		arr[i] = (int)(A * sin(i * PI / interval));
 	}
 }
 
@@ -92,87 +92,85 @@ void random_sorted_double(double* arr, int n, int divider, int interval)
 	srand(time(NULL));
 	double noise = 0;
 	for (int i = 0; i < n; ++i) {
-		noise = 0.01 * ((rand() % divider) % 100001 + 1); //Генерация "шума"
+		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
 		arr[i] = rand() % divider + noise;
 	}
 }
 
 //Функция создания возрастающей вещественной последовательности
-void increase_sorted_double(double* arr, int cnt, int limit, int interval)
+void increase_sorted_double(double* arr, int n, int divider, int interval)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	double noise = 0;
-	*arr = rand() % limit;
-	for (int i = 1; i < cnt; ++i) {
-		noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
-		*(arr + i) = *(arr + i - 1) + rand() % limit + noise;
+	*arr = rand() % divider;
+	for (int i = 1; i < n; ++i) {
+		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
+		*arr = *(arr + i - 1) + rand() % divider + noise;
 	}
 }
 
 //Функция создания убывающей целочисленной последовательности
-void decrease_sorted_double(double* arr, int cnt, int limit, int interval)
+void decrease_sorted_double(double* arr, int n, int divider, int interval)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
 	double noise = 0;
-	*arr = rand() % limit;
-	for (int i = 1; i < cnt; ++i) {
-		noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
-		*(arr + i) = *(arr + i - 1) - rand() % limit + noise;
+	*arr = rand() % divider;
+	for (int i = 1; i < n; ++i) {
+		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
+		*(arr + i) = *(arr + i - 1) - rand() % divider + noise;
 	}
 }
 
 //Функция создания пилообразной вещественной последовательности
-void sawtooth_sorted_double(double* arr, int cnt, int limit, int interval)
+void sawtooth_sorted_double(double* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
-	*arr = rand() % limit;
+	*arr = rand() % divider;
 	double noise = 0;
-	for (int i = 1; i < cnt; ++i) {
+	for (int i = 1; i < n; ++i) {
 		if (i % interval != 0) {
-			noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
-			*(arr + i) = *(arr + i - 1) + rand() % limit + noise;
+			noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
+			*(arr + i) = *(arr + i - 1) + rand() % divider + noise;
 		}
 		if (i % interval == 0) {
-			noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
+			noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
 			*(arr + i) = *arr + noise;
 		}
 	}
 }
 
 //Функция создания синусоидальной вещественной последовательности
-void sin_sorted_double(double* arr, int cnt, int limit, int interval)
+void sin_sorted_double(double* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
 	double noise = 0;
-	double A = limit / 2;
-	double corner = rand() % limit;
-	for (int i = 0; i < cnt; ++i) {
-		noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
-		*(arr + i) = A * sin(corner * i * PI / interval) + noise;
+	double A = divider / 2;
+	double corner = rand() % divider;
+	for (int i = 0; i < n; ++i) {
+		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
+		*(arr + i) = A * sin(i * PI / interval) + noise;
 	}
 }
 
 //Функция создания ступенчатой вещественной последовательности
-void step_sorted_double(double* arr, int cnt, int limit, int interval)
+void step_sorted_double(double* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
-	double level = double(rand() % limit);
+	double level = double(rand() % divider);
 	double noise = 0;
-	for (int i = 0; i < cnt; ++i) {
+	for (int i = 0; i < n; ++i) {
 		if (i % interval != 0) {
-			noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
+			noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
 			*(arr + i) = level + noise;
 		}
 		if (i % interval == 0) {
 			level += interval / 2;
-			noise = 0.01 * ((rand() % limit) % 100001 + 1); //Генерация "шума"
+			noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
 			*(arr + i) = level + noise;
 		}
 	}
 }
 #pragma endregion
-
-
 
 //Введение типа указателя на функцию для значений целочисленного типа
 typedef void (*ptr_func_int)(int*, int, int, int);
@@ -187,6 +185,30 @@ typedef void (*ptr_func_double)(double*, int, int, int);
 ptr_func_double double_functions[N] = { random_sorted_double, increase_sorted_double, decrease_sorted_double, sawtooth_sorted_double, sin_sorted_double, step_sorted_double };
 
 using namespace std;
+//Функция для записи последовательности в файл при количестве элементов менее 200
+void fill_file(/*const char* FName1, const char* FName2,*/ int* arr1, double* arr2, int cnt)
+{
+	ofstream out;
+	out.open("file_int.txt");
+	if (!out.is_open()) {
+		cout << "Файл не открыт\n";
+		exit(0);
+	}
+	for (int i = 0; i < cnt; ++i) {
+		out << *(arr1 + i) << "\n";
+	}
+	out.close();
+
+	out.open("file_double.txt");
+	if (!out.is_open()) {
+		cout << "Файл не открыт\n";
+		exit(0);
+	}
+	for (int i = 0; i < cnt; ++i) {
+		out << *(arr2 + i) << "\n";
+	}
+	out.close();
+}
 
 #pragma region Основная программа
 int main() {
@@ -255,7 +277,7 @@ int main() {
 		auto begin1 = std::chrono::steady_clock::now();
 
 		//Вызов выбранной функции для целочисленных значений
-		mas1[i](*(arr1 + i), count, limit_int, interval);
+		int_functions[i](*(arr1 + i), count, limit_int, interval);
 		auto end1 = std::chrono::steady_clock::now();
 		auto res_time1 = std::chrono::duration_cast<std::chrono::microseconds>(end1 - begin1);
 		cout << "Целочисленной последовательности: " << res_time1.count() << " мкС \n";
@@ -264,7 +286,7 @@ int main() {
 		auto begin2 = std::chrono::steady_clock::now();
 
 		//Вызов выбранной функции для вещественный значений
-		mas2[i](*(arr2 + i), count, limit_double, interval);
+		double_functions[i](*(arr2 + i), count, limit_double, interval);
 		auto end2 = std::chrono::steady_clock::now();
 		auto res_time2 = std::chrono::duration_cast<std::chrono::microseconds>(end2 - begin2);
 		cout << "Вещественной последовательности: " << res_time2.count() << " мкС \n";
@@ -287,17 +309,17 @@ int main() {
 			break;
 		}
 
-		cout << "Int seq:\n";
+		cout << "Целочисленная последовательность:\n";
 		for (int i = 0; i < count; ++i) {
-			cout << *(*(arr1 + num - 1) + i) << " ";
+			cout << *(*(arr1 + num - 1) + i) << "\t";
 		}
 		cout << "\n\n";
-		cout << "Double seq:\n";
+		cout << "Вещественная последовательность:\n";
 		for (int i = 0; i < count; ++i) {
-			cout << *(*(arr2 + num - 1) + i) << " ";
+			cout << *(*(arr2 + num - 1) + i) << "\t";
 		}
 		cout << "\n\n";
-		if (count <= 200) { //Вызов функций записи последовательности в файл, если количество элементов не превышает 200
+		if (count <= 200 && count >= 150) { //Вызов функций записи последовательности в файл, если количество элементов в диапозоне от 150 до 200;
 			fill_file(*(arr1 + num - 1), *(arr2 + num - 1), count);
 		}
 	}
@@ -308,37 +330,6 @@ int main() {
 }
 #pragma endregion
 
-//main
-/***************************************КОНЕЦ ОСНОВНОЙ ПРОГРАММЫ*********************************************************/
 
-
-/***********************************************************************************************************************/
-/*								          РЕАЛИЗАЦИЯ ФУНКЦИЙ                                                                     */
-/***********************************************************************************************************************/
-
-//Функция для записи последовательности в файл при количестве элементов менее 200
-void fill_file(/*const char* FName1, const char* FName2,*/ int* arr1, double* arr2, int cnt)
-{
-	ofstream out;
-	out.open("file_int.txt");
-	if (!out.is_open()) {
-		cout << "Файл не открыт\n";
-		exit(0);
-	}
-	for (int i = 0; i < cnt; ++i) {
-		out << *(arr1 + i) << "\n";
-	}
-	out.close();
-
-	out.open("file_double.txt");
-	if (!out.is_open()) {
-		cout << "Файл не открыт\n";
-		exit(0);
-	}
-	for (int i = 0; i < cnt; ++i) {
-		out << *(arr2 + i) << "\n";
-	}
-	out.close();
-}
 
 
