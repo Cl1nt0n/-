@@ -16,7 +16,7 @@ void random_sorted_int(int* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
 	for (int i = 0; i < n; ++i) {
-		arr[i] = rand() % divider;
+		*(arr + i) = rand() % divider;
 	}
 }
 
@@ -24,9 +24,9 @@ void random_sorted_int(int* arr, int n, int divider, int interval)
 void increase_sorted_int(int* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
-	arr[0] = rand() % divider;
+	*(arr) = rand() % divider;
 	for (int i = 1; i < n; ++i) {
-		arr[i] = arr[i - 1] + rand() % divider;
+		*(arr + i) = *(arr + i - 1) + rand() % divider;
 	}
 }
 
@@ -34,9 +34,9 @@ void increase_sorted_int(int* arr, int n, int divider, int interval)
 void decrease_sorted_int(int* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
-	arr[0] = rand() % divider;
+	*arr = rand() % divider;
 	for (int i = 1; i < n; ++i) {
-		arr[i] = arr[i - 1] - rand() % divider;
+		*(arr + i) = *(arr + i - 1) - rand() % divider;
 	}
 }
 
@@ -44,14 +44,14 @@ void decrease_sorted_int(int* arr, int n, int divider, int interval)
 void sawtooth_sorted_int(int* arr, int n, int divider, int interval)
 {
 	srand(time(NULL));
-	arr[0] = rand() % divider;
+	*arr = rand() % divider;
 
 	for (int i = 1; i < n; ++i) {
 		if (i % interval != 0) {
-			arr[i] = arr[i - 1] + rand() % divider;
+			*(arr + i) = *(arr + i - 1) + rand() % divider;
 		}
 		if (i % interval == 0) {
-			arr[i] = arr[0];
+			*(arr + i) = *(arr);
 		}
 	}
 }
@@ -63,7 +63,7 @@ void sin_sorted_int(int* arr, int n, int divider, int interval)
 	double A = divider / 2;
 	double corner = rand() % divider;
 	for (int i = 0; i < n; ++i) {
-		arr[i] = (int)(A * sin(i * PI / interval));
+		*(arr + i) = (int)(A * sin(i * PI / interval));
 	}
 }
 
@@ -75,11 +75,11 @@ void step_sorted_int(int* arr, int n, int divider, int interval)
 
 	for (int i = 0; i < n; ++i) {
 		if (i % interval != 0) {
-			arr[i] = level;
+			*(arr + i) = level;
 		}
 		if (i % interval == 0) {
 			level += interval / 2;
-			arr[i] = level;
+			*(arr + i) = level;
 		}
 	}
 }
@@ -93,7 +93,7 @@ void random_sorted_double(double* arr, int n, int divider, int interval)
 	double noise = 0;
 	for (int i = 0; i < n; ++i) {
 		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
-		arr[i] = rand() % divider + noise;
+		*(arr + i) = rand() % divider + noise;
 	}
 }
 
@@ -105,7 +105,7 @@ void increase_sorted_double(double* arr, int n, int divider, int interval)
 	*arr = rand() % divider;
 	for (int i = 1; i < n; ++i) {
 		noise = 0.01 * ((rand() % divider) + 1); //Генерация "шума"
-		*arr = *(arr + i - 1) + rand() % divider + noise;
+		*(arr + i) = *(arr + i - 1) + rand() % divider + noise;
 	}
 }
 
@@ -219,8 +219,6 @@ int main() {
 	int limit_double; //ограничение на float последовательность
 	int interval; //интервал
 
-	/**************************************Проверка корректности введенных данных******************************************/
-
 	cout << "Введите количество элементов последовательности: ";
 	cin >> count;
 	while (count <= 0) {
@@ -248,8 +246,6 @@ int main() {
 		cout << "Интервал должен быть больше 0. Введите ещё раз: ";
 		cin >> interval;
 	}
-
-	/************************************************************************************************************************/
 
 	int** arr1; //Целочисленная последовательность
 	arr1 = new int* [N];
